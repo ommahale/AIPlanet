@@ -1,0 +1,29 @@
+services:
+  pg:
+    container_name: pg
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin15
+      POSTGRES_PASSWORD: adgzcb
+      POSTGRES_DB: AIPlanet
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    
+  app:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    environment:
+      PSQL_USER: admin15
+      PSQL_PASSWORD: adgzcb
+      PSQL_HOST: pg
+      PSQL_PORT: 5432
+      PSQL_DB: AIPlanet
+
+    depends_on:
+      - pg
