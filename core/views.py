@@ -63,3 +63,14 @@ class CreateHackathonView(APIView):
                 return Response({"error":serializer.errors},status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({"error":str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class ListHackathonView(generics.ListAPIView):
+    serializer_class = serializers.CreateHackathonSerializer
+    def list(self, request, *args, **kwargs):
+        try:
+            queryset = Hackathon.objects.all()
+            serializer = self.get_serializer(queryset, many=True)
+            return Response({"message":"Hackathon list","data":serializer.data},status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error":str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
