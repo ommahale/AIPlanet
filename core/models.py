@@ -21,8 +21,8 @@ class Hackathon(BaseModel):
     bg_image_url = models.URLField()
     hackathon_image_url = models.URLField()
     description = models.TextField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateField()
+    end_date = models.DateField()
     reward_prize = models.FloatField(max_length=100)
     def __str__(self):
         return self.name
