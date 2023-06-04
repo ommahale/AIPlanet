@@ -12,7 +12,7 @@ class BaseModel(models.Model):
 
 class Members(BaseModel):
     name=models.CharField(max_length=100)
-    email=models.EmailField(blank=True,null=True)
+    email=models.EmailField()
     def __str__(self):
         return self.name
 class Hackathon(BaseModel):
@@ -38,7 +38,10 @@ class HackathonTeam(BaseModel):
 class HackathonSubmission(BaseModel):
     hackathon = models.ForeignKey(Hackathon,on_delete=models.CASCADE)
     team = models.ForeignKey(HackathonTeam,on_delete=models.CASCADE)
+    summary = models.TextField(default="")
     submission_url = models.URLField()
     def __str__(self):
-        return self.submission_url
+        return self.team.team_name
+    class Meta:
+        unique_together = ['hackathon','team']
 

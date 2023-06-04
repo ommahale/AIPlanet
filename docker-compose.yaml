@@ -14,8 +14,8 @@ services:
     
   app:
     build: .
-    ports:
-      - 8000:8000
+    # ports:
+    #   - 8000:8000
     volumes:
       - .:/app
     environment:
@@ -24,6 +24,14 @@ services:
       PSQL_HOST: pg
       PSQL_PORT: 5432
       PSQL_DB: AIPlanet
-
     depends_on:
       - pg
+  nginx:
+    container_name: load_balancer
+    image: nginx:latest
+    volumes: 
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    ports:
+      - 8000:8000
