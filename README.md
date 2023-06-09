@@ -5,8 +5,8 @@ This is a submission for AI Planet Assignment
 2. Install and run docker daemon
 3. Run the following command
 ```bash
-docker-compose up --scale app= $NO_OF_INSTANCES
-deocker-compose run app python manage.py migrate
+docker-compose up --scale app= $NO_OF_CONTAINERS
+docker-compose run app python manage.py migrate
 ```
 4. Open the browser and go to http://localhost:8000
 5. You can see the result of the assignment
