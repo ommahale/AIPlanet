@@ -26,5 +26,5 @@ urlpatterns = [
    path("hackathon/team/register",views.RegisterTeamAPIView.as_view()),
    path("hackathon/team/list",views.get_user_registrations),
    path("hackathon/team/submit",views.CreateSubmissionAPIView.as_view()),
-   path("hackathon/team/submissions",views.get_hackathon_submissions),
+   path("hackathon/team/submissions/<str:team_id>",views.get_hackathon_submissions),
 ]
